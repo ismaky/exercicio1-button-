@@ -9,42 +9,55 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    
     var text = "AÇÃO DISPARADA"
 
-    var button: UIButton {
-        let button: UIButton = UIButton()
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.setTitle("APERTE", for: .normal)
-        button.titleLabel?.font = UIFont.systemFont(ofSize: 26)
-        button.setTitleColor(.black, for: .normal)
-        button.layer.borderColor = UIColor.black.cgColor
-        button.layer.borderWidth = 4
-        button.clipsToBounds = true
-        button.layer.cornerRadius = 10
-        button.addTarget(self, action: #selector(self.tappedButton(_:)), for: .touchUpInside)
-        button.backgroundColor = .black
-        return button
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.self.backgroundColor = .green
+        
+        let colorChangeButtonBlack: UIButton = UIButton()
+        colorChangeButtonBlack.translatesAutoresizingMaskIntoConstraints = false
+        colorChangeButtonBlack.setTitle("APERTE", for: .normal)
+        colorChangeButtonBlack.setTitleColor(.blue, for: .normal)
+        colorChangeButtonBlack.layer.borderColor = UIColor.blue.cgColor
+        colorChangeButtonBlack.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        colorChangeButtonBlack.backgroundColor = .clear
+        colorChangeButtonBlack.layer.cornerRadius = 10
+        colorChangeButtonBlack.layer.borderWidth = 4
+        colorChangeButtonBlack.frame = CGRect (x: 45, y: 280, width: 300, height: 40)
+        colorChangeButtonBlack.addTarget(self, action: #selector(self.tappedButton(_:)), for: .touchUpInside)
+        colorChangeButtonBlack.addTarget(self, action: #selector(self.buttonTapped), for: .touchUpInside)
+        
+        view.addSubview(colorChangeButtonBlack)
+        
+        let colorChangeButtonWhite: UIButton = UIButton()
+        colorChangeButtonWhite.translatesAutoresizingMaskIntoConstraints = false
+        colorChangeButtonWhite.setTitle("APERTE E MUDE A COR", for: .normal)
+        colorChangeButtonWhite.setTitleColor(.blue, for: .normal)
+        colorChangeButtonWhite.layer.borderColor = UIColor.blue.cgColor
+        colorChangeButtonWhite.titleLabel?.font = UIFont.systemFont(ofSize: 25)
+        colorChangeButtonWhite.backgroundColor = .clear
+        colorChangeButtonWhite.layer.cornerRadius = 10
+        colorChangeButtonWhite.layer.borderWidth = 4
+        colorChangeButtonWhite.frame = CGRect (x: 45, y: 480, width: 300, height: 40)
+        colorChangeButtonBlack.addTarget(self, action: #selector(self.tappedButton(_:)), for: .touchUpInside)
+        colorChangeButtonWhite.addTarget(self, action: #selector(self.buttonTapped1), for: .touchUpInside)
+        
+        view.addSubview(colorChangeButtonWhite)
+        
+    }
+    @objc func buttonTapped() {
+        view.backgroundColor = .black
+    }
+
+    @objc func buttonTapped1() {
+        view.backgroundColor = .white
     }
     
     @objc func tappedButton(_ sender: UIButton) {
         print(text)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.view.backgroundColor = .white
-        self.view.addSubview(self.button)
-        self.configConstraints()
-    }
-
-    private func configConstraints() {
-        NSLayoutConstraint.activate([
-            self.button.centerXAnchor.constraint(equalTo: self.view.centerXAnchor),
-            self.button.centerYAnchor.constraint(equalTo: self.view.centerYAnchor),
-            self.button.heightAnchor.constraint(equalToConstant: 20),
-            self.button.widthAnchor.constraint(equalToConstant: -20)
-        ])
-    }
-
 }
 
